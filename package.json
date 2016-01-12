@@ -1,8 +1,8 @@
 {
-  "name": "promise",
+  "name": "deferred",
   "version": "1.0.0",
   "description": "TODO",
-  "main": "./src/promise.js",
+  "main": "./src/deferred.js",
   "directories": {
     "test": "test",
     "src": "src"
