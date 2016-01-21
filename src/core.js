@@ -144,11 +144,6 @@ Thenable.prototype.fail = function ( a ) {
 function Promise ( o ) {
     var self = this;
     Thenable.apply( self, arguments );
-    if ( typeof o === "object" && typeof o.timeout === "number" ) {
-        setTimeout( function () {
-            self.reject( new Error( "Thenable : timeout " + o.timeout ) );
-        } );
-    }
 }
 
 Promise.prototype = new Thenable();

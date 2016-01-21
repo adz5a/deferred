@@ -13,5 +13,7 @@ promise.resolve = function ( promise, value ) {
     return core.Promise.prototype.resolve.call( promise, value );
 };
 
-promise.all  = require( "./all.js" );
-promise.race = require( "./race.js" );
+
+promise.getConstructor = require( "./exportConstructor.js" );
+promise.all               = require( "./all.js" );
+promise.race              = require( "./race.js" );
