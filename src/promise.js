@@ -2,6 +2,9 @@
 "use strict";
 var core = require( "./core.js" );
 
+/**
+ * @return {Promise}
+ */
 var promise = module.exports = exports = function ( o ) {
     return new core.Promise( o );
 };
@@ -15,5 +18,5 @@ promise.resolve = function ( promise, value ) {
 
 
 promise.getConstructor = require( "./exportConstructor.js" );
-promise.all               = require( "./all.js" );
-promise.race              = require( "./race.js" );
+promise.all            = require( "./all.js" );
+promise.race           = require( "./race.js" );

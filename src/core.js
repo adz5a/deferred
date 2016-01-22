@@ -137,7 +137,7 @@ Thenable.prototype.then = function ( a, b ) {
     return nextPromise;
 };
 
-Thenable.prototype.fail = function ( a ) {
+Thenable.prototype.catch = function ( a ) {
     return this.then( null, a );
 };
 
