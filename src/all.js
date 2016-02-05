@@ -22,7 +22,7 @@ module.exports = exports = function ( promises ) {
     for ( i = 0, l = promises.length; i < l; i = i + 1 ) {
         p = p
             .then( addValueToStack( promises[i], stack ) )
-            .fail( function ( err ) {
+            .catch( function ( err ) {
                 promise.reject( err );
             } );
     }
