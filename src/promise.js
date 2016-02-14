@@ -5,8 +5,8 @@ var core = require( "./core.js" );
 /**
  * @return {Promise}
  */
-var promise = module.exports = exports = function ( o ) {
-    return new core.Promise( o );
+var promise = module.exports = exports = function (  ) {
+    return new core.Promise(  );
 };
 
 promise.reject  = function ( promise, reason ) {
