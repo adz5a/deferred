@@ -106,7 +106,12 @@ function executeHandlers ( future, prevVal, prevState ) {
     return future;
 }
 
-
+/**
+ *
+ * @param onFulfill {Function=}
+ * @param onRejection {Function=}
+ * @constructor
+ */
 function Thenable ( onFulfill, onRejection ) {
 
     //if an handler was passed, it is used, else the handler upon fulfillment will be according to the promise a+ specs 2.2.1
@@ -125,8 +130,14 @@ function Thenable ( onFulfill, onRejection ) {
     this.value = void(0);
 }
 
-Thenable.prototype.then = function ( a, b ) {
-    var nextPromise = new Thenable( a, b );
+/**
+ *
+ * @param onFulfill {Function}
+ * @param onRejection {Function}
+ * @returns {Thenable}
+ */
+Thenable.prototype.then = function ( onFulfill, onRejection ) {
+    var nextPromise = new Thenable( onFulfill, onRejection );
 
     if ( this.state !== PENDING ) {
 
@@ -137,23 +148,40 @@ Thenable.prototype.then = function ( a, b ) {
     return nextPromise;
 };
 
-Thenable.prototype.catch = function ( a ) {
-    return this.then( null, a );
+/**
+ *
+ * @param onRejection {Function}
+ * @returns {Thenable}
+ */
+Thenable.prototype.catch = function ( onRejection ) {
+    return this.then( null, onRejection );
 };
 
-function Promise ( o ) {
+/**
+ *
+ * @constructor
+ */
+function Promise () {
     var self = this;
     Thenable.apply( self, arguments );
 }
 
 Promise.prototype = new Thenable();
 
-Promise.prototype.resolve = function ( a ) {
-    return resolvePromise( this, a );
+/**
+ *
+ * @param value
+ */
+Promise.prototype.resolve = function ( value ) {
+    return resolvePromise( this, value );
 };
 
-Promise.prototype.reject = function ( r ) {
-    return transitionTo( this, REJECTED, r );
+/**
+ *
+ * @param reason
+ */
+Promise.prototype.reject = function ( reason ) {
+    return transitionTo( this, REJECTED, reason );
 };
 
 module.exports = exports = {
