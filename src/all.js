@@ -13,10 +13,10 @@ function addValueToStack ( promise, stack ) {
 
 module.exports = exports = function ( promises ) {
     /*
-     * promises = [promise]
+     * promises = [deferred]
      */
-    var p       = new core.Promise().resolve( {} );
-    var promise = new core.Promise();
+    var p       = new core.Deferred().resolve( {} );
+    var promise = new core.Deferred();
     var stack   = [];
     var i, l;
     for ( i = 0, l = promises.length; i < l; i = i + 1 ) {

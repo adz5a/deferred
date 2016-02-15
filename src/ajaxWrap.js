@@ -7,7 +7,7 @@ module.exports = exports = function ( $ ) {
     if ( typeof $.ajax !== "function" ) throw new TypeError( "Thenable.ajaxWrap : Parameter not valid" );
     var wrappedAjax = function ( o ) {
 
-        var promise = new core.Promise();
+        var promise = new core.Deferred();
 
         if ( typeof o !== "object" ) throw new TypeError( "Option parameter is not an object" );
         o.success = function ( data ) {

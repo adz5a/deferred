@@ -1,6 +1,6 @@
 "use strict";
 var src     = "./../src/";
-var promise = require( src + "promise.js" );
+var promise = require( src + "deferred.js" );
 
 var p1 = promise();
 var p2 = promise();

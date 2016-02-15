@@ -1,5 +1,5 @@
 "use strict";
-var promise = require("promise");//or any other promise library
+var promise = require("promise");//or any other deferred library
 
 var wrappedAjax;
 

@@ -8,7 +8,7 @@ module.exports = exports = function ( $ ) {
     if ( typeof $.ajax !== "function" ) throw new TypeError( "Thenable.ajaxWrap : Parameter not valid" );
     var wrappedAjax = function ( o ) {
 
-        var promise = new core.Promise();
+        var promise = new core.Deferred();
 
         if ( typeof o !== "object" ) throw new TypeError( "Option parameter is not an object" );
         o.success = function ( data ) {
@@ -41,10 +41,10 @@ function addValueToStack ( promise, stack ) {
 
 module.exports = exports = function ( promises ) {
     /*
-     * promises = [promise]
+     * promises = [deferred]
      */
-    var p       = new core.Promise().resolve( {} );
-    var promise = new core.Promise();
+    var p       = new core.Deferred().resolve( {} );
+    var promise = new core.Deferred();
     var stack   = [];
     var i, l;
     for ( i = 0, l = promises.length; i < l; i = i + 1 ) {
@@ -104,7 +104,7 @@ function thenCallbacks ( promise ) {
 
 function resolvePromise ( promise, value ) {
 
-    if ( promise === value ) transitionTo( promise, REJECTED, new TypeError( "Error : trying to resolve a promise with itself" ) );
+    if ( promise === value ) transitionTo( promise, REJECTED, new TypeError( "Error : trying to resolve a deferred with itself" ) );
     if ( promise.state !== PENDING ) return promise;
 
     var
@@ -127,7 +127,7 @@ function resolvePromise ( promise, value ) {
             } else {
                 return transitionTo( promise, FULFILLED, value );
             }
-        } catch ( err ) {//at any point if there was an error and the cb were not called (ie : cb.first = true) we reject the promise with the error catched
+        } catch ( err ) {//at any point if there was an error and the cb were not called (ie : cb.first = true) we reject the deferred with the error catched
 
             if ( cb[2].first && !resolvedAsync ) { //reject only if no callbacks were called
                 transitionTo( promise, REJECTED, err );
@@ -180,7 +180,7 @@ function executeHandlers ( future, prevVal, prevState ) {
 
 function Thenable ( onFulfill, onRejection ) {
 
-    //if an handler was passed, it is used, else the handler upon fulfillment will be according to the promise a+ specs 2.2.1
+    //if an handler was passed, it is used, else the handler upon fulfillment will be according to the deferred a+ specs 2.2.1
     var defaultCallbacks = thenCallbacks( this );
 
     onFulfill   = (typeof onFulfill === "function" ?
@@ -234,22 +234,22 @@ Promise.prototype.reject = function ( r ) {
 
 module.exports = exports = {
     "Thenable": Thenable,
-    "Promise": Promise
+    "Deferred": Promise
 };
 },{}],5:[function(require,module,exports){
-// src/promise.js
+// src/deferred.js
 "use strict";
 var core = require( "./core.js" );
 
 var promise = module.exports = exports = function ( o ) {
-    return new core.Promise( o );
+    return new core.Deferred( o );
 };
 
 promise.reject  = function ( promise, reason ) {
-    return core.Promise.prototype.reject.call( promise, reason );
+    return core.Deferred.prototype.reject.call( promise, reason );
 };
 promise.resolve = function ( promise, value ) {
-    return core.Promise.prototype.resolve.call( promise, value );
+    return core.Deferred.prototype.resolve.call( promise, value );
 };
 
 promise.all  = require( "./all.js" );
@@ -260,7 +260,7 @@ promise.race = require( "./race.js" );
 var core = require( "./core.js" );
 
 module.exports = exports = function ( promiseArray ) {
-    var promise = new core.Promise();
+    var promise = new core.Deferred();
 
     var resolvePromise = function ( value ) {
         promise.resolve( value );

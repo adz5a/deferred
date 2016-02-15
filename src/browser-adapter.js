@@ -1,3 +1,3 @@
-var promise = window.promise = require( "./promise.js" );
+var promise = window.promise = require( "./deferred.js" );
 
 promise.ajaxWrap = require( "./ajaxWrap" );

@@ -1,6 +1,6 @@
 "use strict";
 
-var promise = require( "../src/promise.js" );
+var promise = require( "../src/deferred.js" );
 
 module.exports = {
     "deferred": function () {

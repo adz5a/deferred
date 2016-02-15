@@ -11,9 +11,9 @@ gulp.task( "build-production", function () {
     var bundle = browserify( "./src/browser-adapter.js" ).bundle();
 
     return bundle
-        .pipe( source( "promise.js" ) )
+        .pipe( source( "deferred.js" ) )
         .pipe( streamify( uglify() ) )
-        .pipe( rename( "promise.min.js" ) )
+        .pipe( rename( "deferred.min.js" ) )
         .pipe( gulp.dest( "./browser/" ) );
 
 } );
@@ -23,7 +23,7 @@ gulp.task( "build-browser", function () {
     var bundle = browserify( "./src/browser-adapter.js" ).bundle();
 
     return bundle
-        .pipe( source( "promise.js" ) )
+        .pipe( source( "deferred.js" ) )
         .pipe( gulp.dest( "./browser/" ) );
 
 } );

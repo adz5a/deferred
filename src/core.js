@@ -6,6 +6,13 @@ var
     FULFILLED = 0,
     REJECTED  = 1;
 
+/**
+ *
+ * @param promise {Thenable}
+ * @param state
+ * @param value
+ * @returns {*}
+ */
 function transitionTo ( promise, state, value ) {
     if ( promise.state !== PENDING ) return promise;
 
@@ -15,6 +22,11 @@ function transitionTo ( promise, state, value ) {
     return executeNextPromises( promise );
 }
 
+/**
+ *
+ * @param promise {Thenable}
+ * @returns {Function[]}
+ */
 function thenCallbacks ( promise ) {
     var executed = { "first": true };
 
@@ -31,9 +43,15 @@ function thenCallbacks ( promise ) {
     }, executed];
 }
 
+/**
+ *
+ * @param promise {Thenable}
+ * @param value
+ * @returns {Thenable}
+ */
 function resolvePromise ( promise, value ) {
 
-    if ( promise === value ) transitionTo( promise, REJECTED, new TypeError( "Error : trying to resolve a promise with itself" ) );
+    if ( promise === value ) transitionTo( promise, REJECTED, new TypeError( "Error : trying to resolve a deferred with itself" ) );
     if ( promise.state !== PENDING ) return promise;
 
     var
@@ -56,7 +74,7 @@ function resolvePromise ( promise, value ) {
             } else {
                 return transitionTo( promise, FULFILLED, value );
             }
-        } catch ( err ) {//at any point if there was an error and the cb were not called (ie : cb.first = true) we reject the promise with the error catched
+        } catch ( err ) {//at any point if there was an error and the cb were not called (ie : cb.first = true) we reject the deferred with the error catched
 
             if ( cb[2].first && !resolvedAsync ) { //reject only if no callbacks were called
                 transitionTo( promise, REJECTED, err );
@@ -72,6 +90,11 @@ function resolvePromise ( promise, value ) {
     return promise;
 }
 
+/**
+ *
+ * @param promise {Thenable}
+ * @returns {*}
+ */
 function executeNextPromises ( promise ) {
 
     if ( promise.state === PENDING ) return promise;
@@ -89,6 +112,13 @@ function executeNextPromises ( promise ) {
     return promise;
 }
 
+/**
+ *
+ * @param future {Thenable}
+ * @param prevVal
+ * @param prevState
+ * @returns {Thenable}
+ */
 function executeHandlers ( future, prevVal, prevState ) {
 
     setTimeout( function () {
@@ -114,7 +144,7 @@ function executeHandlers ( future, prevVal, prevState ) {
  */
 function Thenable ( onFulfill, onRejection ) {
 
-    //if an handler was passed, it is used, else the handler upon fulfillment will be according to the promise a+ specs 2.2.1
+    //if an handler was passed, it is used, else the handler upon fulfillment will be according to the deferred a+ specs 2.2.1
     var defaultCallbacks = thenCallbacks( this );
 
     onFulfill   = (typeof onFulfill === "function" ?
@@ -160,19 +190,20 @@ Thenable.prototype.catch = function ( onRejection ) {
 /**
  *
  * @constructor
+ * @augments Thenable
  */
-function Promise () {
+function Deferred () {
     var self = this;
     Thenable.apply( self, arguments );
 }
 
-Promise.prototype = new Thenable();
+Deferred.prototype = new Thenable();
 
 /**
  *
  * @param value
  */
-Promise.prototype.resolve = function ( value ) {
+Deferred.prototype.resolve = function ( value ) {
     return resolvePromise( this, value );
 };
 
@@ -180,11 +211,11 @@ Promise.prototype.resolve = function ( value ) {
  *
  * @param reason
  */
-Promise.prototype.reject = function ( reason ) {
+Deferred.prototype.reject = function ( reason ) {
     return transitionTo( this, REJECTED, reason );
 };
 
 module.exports = exports = {
     "Thenable": Thenable,
-    "Promise": Promise
+    "Deferred": Deferred
 };

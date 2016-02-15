@@ -3,7 +3,7 @@
 var core = require( "./core.js" );
 
 module.exports = exports = function ( promiseArray ) {
-    var promise = new core.Promise();
+    var promise = new core.Deferred();
 
     var resolvePromise = function ( value ) {
         promise.resolve( value );
