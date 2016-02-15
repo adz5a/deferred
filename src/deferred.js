@@ -5,8 +5,8 @@ var core = require( "./core.js" );
 /**
  * @return {Deferred}
  */
-var deferred = module.exports = exports = function (  ) {
-    return new core.Deferred(  );
+var deferred = module.exports = exports = function () {
+    return new core.Deferred();
 };
 
 deferred.reject  = function ( promise, reason ) {
