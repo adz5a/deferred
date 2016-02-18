@@ -10,8 +10,12 @@ function addValueToStack ( promise, stack ) {
         } );
     };
 }
-
-module.exports = exports = function ( promises ) {
+/**
+ *
+ * @param promises {[Thenable]}
+ * @returns {Thenable}
+ */
+module.exports = function ( promises ) {
     /*
      * promises = [deferred]
      */
@@ -21,7 +25,7 @@ module.exports = exports = function ( promises ) {
     var i, l;
     for ( i = 0, l = promises.length; i < l; i = i + 1 ) {
         p = p
-            .then( addValueToStack( promises[i], stack ) )
+            .then( addValueToStack( promises[ i ], stack ) )
             .catch( function ( err ) {
                 promise.reject( err );
             } );

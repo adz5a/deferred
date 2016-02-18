@@ -2,19 +2,24 @@
 "use strict";
 var core = require( "./core.js" );
 
-module.exports = exports = function ( promiseArray ) {
+/**
+ *
+ * @param promiseArray {[Thenable]}
+ * @returns {Thenable}
+ */
+module.exports = function ( promiseArray ) {
     var promise = new core.Deferred();
 
     var resolvePromise = function ( value ) {
         promise.resolve( value );
     };
-    var rejectPromise = function ( reason ) {
+    var rejectPromise  = function ( reason ) {
         promise.reject( reason );
     };
 
     var i, l;
     for ( i = 0, l = promiseArray.length; i < l; i = i + 1 ) {
-        promiseArray[i].then( resolvePromise, rejectPromise );
+        promiseArray[ i ].then( resolvePromise, rejectPromise );
     }
     return promise.then();
 };

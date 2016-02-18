@@ -162,8 +162,8 @@ function Thenable ( onFulfill, onRejection ) {
 
 /**
  *
- * @param onFulfill {Function}
- * @param onRejection {Function}
+ * @param onFulfill {Function=}
+ * @param onRejection {Function=}
  * @returns {Thenable}
  */
 Thenable.prototype.then = function ( onFulfill, onRejection ) {

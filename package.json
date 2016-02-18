@@ -2,7 +2,7 @@
   "name": "deferred",
   "version": "1.0.0",
   "description": "TODO",
-  "main": "./src/deferred.js",
+  "main": "deferred.js",
   "directories": {
     "test": "test",
     "src": "src"
