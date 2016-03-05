@@ -5,7 +5,7 @@
   "main": "deferred.js",
   "directories": {
     "test": "test",
-    "src": "src"
+    "lib": "lib"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
   "license": "MIT",
   "scripts": {
     "test": "promises-aplus-tests ./test/adapter.js",
-    "bundle": "gulp build-browser"
+    "build": "gulp build-browser"
   },
   "devDependencies": {
     "promises-aplus-tests": "*"

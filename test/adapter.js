@@ -4,11 +4,7 @@ var promise = require( "../deferred.js" );
 
 module.exports = {
     "deferred": function () {
-        var p = promise();
-
-        p.promise = p;
-
-        return p;
+        return promise();
     },
     "resolved": function ( value ) {
         return promise().resolve( value );
