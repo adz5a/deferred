@@ -20,7 +20,7 @@ gulp.task( "build-production", function () {
 
 gulp.task( "build-browser", function () {
 
-    var bundle = browserify( "./src/browser-adapter.js" ).bundle();
+    var bundle = browserify( "./lib/browser-adapter.js" ).bundle();
 
     return bundle
         .pipe( source( "deferred.js" ) )

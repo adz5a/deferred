@@ -1,6 +1,6 @@
 // src/promise.js
 "use strict";
-var core = require( "./core.js" );
+var core = require( "./lib/core.js" );
 
 /**
  * @return {Deferred}
@@ -28,6 +28,6 @@ deferred.resolve = function ( promise, value ) {
 };
 
 
-deferred.getConstructor = require( "./exportConstructor.js" );
-deferred.all            = require( "./all.js" );
-deferred.race           = require( "./race.js" );
+deferred.getConstructor = require( "./lib/exportConstructor.js" );
+deferred.all            = require( "./lib/all.js" );
+deferred.race           = require( "./lib/race.js" );

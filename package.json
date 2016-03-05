@@ -14,15 +14,16 @@
   "author": "Antoine Zimmermann",
   "license": "MIT",
   "scripts": {
-    "test": "promises-aplus-tests ./test/adapter.js"
+    "test": "promises-aplus-tests ./test/adapter.js",
+    "bundle": "gulp build-browser"
   },
   "devDependencies": {
+    "promises-aplus-tests": "*"
+  },
+  "dependencies": {
+    "vinyl-source-stream": "^1.1.0",
     "browserify": "^12.0.1",
     "gulp": "^3.9.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-streamify": "^1.0.2",
-    "gulp-uglify": "^1.4.2",
-    "promises-aplus-tests": "*",
-    "vinyl-source-stream": "^1.1.0"
+    "gulp-uglify": "^1.4.2"
   }
 }
