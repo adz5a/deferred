@@ -8,6 +8,9 @@ To ru the tests : `npm test`
 
 ### In the browser
 
-To use in the browser : `npm install` then `npm build` should result in npm installing all the necessary
-dependencies and then running the build script (a gulp tasks named `build-browser` which can be found
-in the gulpfile). The output will be displayed inside *./browser/deferred.js* and can be used directly.
+The bundle use **browserify**, so it should be installed on your path : `npm install --global browserify`.
+
+To bundle, just run : `npm install` then `npm run bundle`.
+
+It will create a *dist* folder in which will be the bundled *deferred.js*. When inserted on a page, the global variable
+*deferred* is used. It can be changed easily by modifying the `exporter.js` file.

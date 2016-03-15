@@ -10,6 +10,5 @@ var deferred = module.exports = exports = function () {
 };
 
 
-deferred.getConstructor = require( "./lib/exportConstructor.js" );
 deferred.all            = require( "./lib/all.js" );
 deferred.race           = require( "./lib/race.js" );
