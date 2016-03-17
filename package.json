@@ -15,8 +15,7 @@
   "license": "MIT",
   "scripts": {
     "test": "promises-aplus-tests ./test/adapter.js",
-    "build": "gulp build-browser",
-    "bundle": "mkdir dist && browserify ./exporter.js -o ./dist/deferred.js"
+    "bundle": "mkdir dist && browserify exporter.js -o dist/deferred.js"
   },
   "devDependencies": {
     "promises-aplus-tests": "*"
