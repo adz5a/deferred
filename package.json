@@ -18,6 +18,7 @@
     "bundle": "mkdir dist && browserify exporter.js -o dist/deferred.js"
   },
   "devDependencies": {
+    "docco": "^0.7.0",
     "promises-aplus-tests": "*"
   }
 }
