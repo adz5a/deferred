@@ -13,7 +13,11 @@ var deferred = module.exports = exports = function () {
 
 deferred.all            = require( "./lib/all.js" );
 deferred.race           = require( "./lib/race.js" );
-},{"./lib/all.js":2,"./lib/core.js":3,"./lib/race.js":4}],2:[function(require,module,exports){
+},{"./lib/all.js":3,"./lib/core.js":4,"./lib/race.js":5}],2:[function(require,module,exports){
+"use strict";
+
+window.deferred = require( "./deferred.js" );
+},{"./deferred.js":1}],3:[function(require,module,exports){
 // src/all.js
 "use strict";
 
@@ -55,7 +59,7 @@ module.exports = function ( promises ) {
 
 
 
-},{"./core.js":3}],3:[function(require,module,exports){
+},{"./core.js":4}],4:[function(require,module,exports){
 // src/core.js
 "use strict";
 
@@ -284,7 +288,7 @@ module.exports = exports = {
     "Thenable": Thenable,
     "Deferred": Deferred
 };
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 // src/race.js
 "use strict";
 var core = require( "./core.js" );
@@ -317,4 +321,4 @@ module.exports = function ( promiseArray ) {
     }
     return deferred.promise;
 };
-},{"./core.js":3}]},{},[1]);
+},{"./core.js":4}]},{},[2]);

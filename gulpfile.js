@@ -6,7 +6,7 @@ var browserify = require( "browserify" );
 
 gulp.task( "bundle", function () {
 
-    return browserify( "deferred.js" ).bundle()
+    return browserify( "exporter.js" ).bundle()
         .pipe( source( "deferred.js" ) )
         .pipe( gulp.dest( "dist/" ) );
 
