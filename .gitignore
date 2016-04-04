@@ -8,7 +8,6 @@
 out
 gen
 public
-dist
 
 #dependencies
 node_modules
