@@ -18,7 +18,10 @@
     "bundle": "mkdir dist && browserify exporter.js -o dist/deferred.js"
   },
   "devDependencies": {
+    "browserify": "^13.0.0",
     "docco": "^0.7.0",
-    "promises-aplus-tests": "*"
+    "gulp": "^3.9.1",
+    "promises-aplus-tests": "*",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
