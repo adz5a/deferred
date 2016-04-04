@@ -16,7 +16,18 @@ deferred.race           = require( "./lib/race.js" );
 },{"./lib/all.js":3,"./lib/core.js":4,"./lib/race.js":5}],2:[function(require,module,exports){
 "use strict";
 
-window.deferred = require( "./deferred.js" );
+var oldRef = window.deferred;
+var deferred = require( "./deferred.js" );
+
+deferred.noConflict = function () {
+
+    window.deferred = oldRef;
+    return this;
+
+};
+
+
+window.deferred = window.__deferred = deferred;
 },{"./deferred.js":1}],3:[function(require,module,exports){
 // src/all.js
 "use strict";
