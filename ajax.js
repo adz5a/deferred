@@ -1,7 +1,8 @@
-(function ( window, $ ) {
+(function () {
 
     "use strict";
-
+    var global = typeof global === "object" && global.window ? global : window;
+    var $ = global.jQuery;
     var deferred = require( "./deferred.js" );
 
     module.exports = function ( options ) {
@@ -25,4 +26,4 @@
         return response.promise;
     };
 
-}( this, this.jQuery ));
+}());
