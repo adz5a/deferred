@@ -11,6 +11,7 @@
 
         options.success = function ( data ) {
 
+            console.log()
             response.resolve( data );
 
         };
