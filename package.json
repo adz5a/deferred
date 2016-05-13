@@ -12,7 +12,6 @@
     "url": "git@bitbucket.org:storetail/promise.git"
   },
   "author": "Antoine Zimmermann",
-  "license": "MIT",
   "scripts": {
     "test": "promises-aplus-tests ./test/adapter.js",
     "bundle": "mkdir dist && browserify exporter.js -o dist/deferred.js"
