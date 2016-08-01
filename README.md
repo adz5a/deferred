@@ -21,32 +21,31 @@ It will create a *dist* folder in which will be the bundled *deferred.js*. When 
 
 By default, this module exports are a singe function which serves as a factory
 
-`
-    const deferred = require("deferred");
-    let deferrredObject = deferred();
+``
+const deferred = require("deferred");
+let deferrredObject = deferred();
 
-    deferrredObject.promise.then(value => {
-        // play with my value
-    }, error => {
-        // handle my error
-    });
-
-`
+deferrredObject.promise.then(value => {
+    // play with my value
+}, error => {
+    // handle my error
+});
+``
 
 #### {Constructor} deferred.Promise
 
 Constructor with the same semantics as the official implementation. Can be used as a local or global polyfill.
 
-`
-    const Promise = require("deferred").Promise;
+``
+const Promise = require("deferred").Promise;
 
-    let promise = new Promise((resolve, reject) => {
+let promise = new Promise((resolve, reject) => {
 
-        // doing what I want...
+    // doing what I want...
 
-    });
+});
 
 
-    promise.then(value => {}, error => {});
+promise.then(value => {}, error => {});
 
-`
+``
